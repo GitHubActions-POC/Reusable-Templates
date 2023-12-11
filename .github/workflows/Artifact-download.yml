@@ -1,4 +1,4 @@
-name: Artifact-Reusable-workflow
+name: Artifact-download-Reusable-workflow
 on:
   workflow_call:
 jobs:
