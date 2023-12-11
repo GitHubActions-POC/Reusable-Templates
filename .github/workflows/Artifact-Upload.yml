@@ -1,0 +1,11 @@
+name: Artifact-Upload-Reusable-workflow
+on:
+  workflow_call:
+jobs:
+  Artifact-Upload:
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/upload-artifact@v3.1.1
+      with:
+        name: drop-${{ github.sha }}
+        path: "${{ runner.temp }}"
