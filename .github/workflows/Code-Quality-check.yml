@@ -19,7 +19,7 @@ on:
         required: true
 jobs:
   code-quality-check:
-    if: ${{ inputs.ccode-quality  == 'yes' }}
+    if: ${{ inputs.code-quality  == 'yes' }}
     runs-on: ubuntu-latest    
     steps:
     - name: checkout
