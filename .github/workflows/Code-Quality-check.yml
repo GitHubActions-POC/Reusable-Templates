@@ -15,7 +15,7 @@ on:
       ADOVARIABLE:
         required: true
 jobs:
-  build:
+  code-quality-check:
     runs-on: ubuntu-latest
     
     steps:
