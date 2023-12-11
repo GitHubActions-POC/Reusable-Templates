@@ -8,11 +8,15 @@ on:
       junit_files:  
         required: true
         type: string
+      junit:  
+        required: true
+        type: string
     secrets:
       ADOVARIABLE:
         required: true
 jobs:
   Juints:
+    if: ${{ inputs.junit  == 'yes' }}
     runs-on: ubuntu-latest    
     steps:
     - name: checkout
