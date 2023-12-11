@@ -18,6 +18,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: drop-${{ github.sha }}
+        path: "${{ runner.temp }}"
     - name: 'Azure App Service Deploy: poc-adotogithub-java'
       uses: azure/login@v1.4.6
       with:
