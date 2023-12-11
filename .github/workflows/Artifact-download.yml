@@ -2,7 +2,7 @@ name: Artifact-download-Reusable-workflow
 on:
   workflow_call:
 jobs:
-  deploy:
+  Artifact-download:
     runs-on: windows-latest
     steps:
     - name: Download a single artifact
