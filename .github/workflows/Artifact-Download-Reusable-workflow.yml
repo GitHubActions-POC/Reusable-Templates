@@ -1,9 +1,9 @@
-name: Artifact-Reusable-workflow
+name: Artifact-Download-Reusable-workflow
 on:
   workflow_call:
 jobs:
   
-  deploy:
+  Artifact-Download:
     runs-on: windows-latest
     steps:
     - name: Download a single artifact
