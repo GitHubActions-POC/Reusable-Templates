@@ -13,12 +13,7 @@ on:
 jobs:
   deploy:
     runs-on: windows-latest
-    steps:
-    - name: Download a single artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: drop-${{ github.sha }}
-        path: "${{ runner.temp }}"
+    steps:      
     - name: 'Azure App Service Deploy: poc-adotogithub-java'
       uses: azure/login@v1.4.6
       with:
@@ -27,4 +22,4 @@ jobs:
       uses: azure/webapps-deploy@v2.2.10
       with:
         app-name: poc-adotogithub-java
-        package: "*/target/musicalbum-0.0.1-SNAPSHOT.jar"     
+        package: "${{ github.workspace }}/target/musicalbum-0.0.1-SNAPSHOT.jar"     
