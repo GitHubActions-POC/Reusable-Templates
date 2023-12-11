@@ -1,0 +1,50 @@
+name: Code-Quality-check
+on:
+  workflow_call:
+    inputs:
+      GLOBAL_MY_MAPPED_ENV_VAR:
+        required: true
+        type: string
+      output:
+        required: true
+        type: string
+      format:  
+        required: true
+        type: string      
+    secrets:
+      ADOVARIABLE:
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3.5.0
+    - run: |-
+        echo "Using an input-macro works for secrets var : ${{ secrets.ADOVARIABLE }}"
+        echo "Using the env var directly does not work : ${{ inputs.GLOBAL_MY_MAPPED_ENV_VAR }}"
+      shell: bash
+    - name: Setup Java 8
+      uses: actions/setup-java@v3.12.0
+      with:
+        distribution: zulu
+        java-version: '8'
+    -  name: code analysis   
+       uses: codacy/codacy-analysis-cli-action@master
+       with:
+        output: ${{ inputs.output }}
+        format: ${{ inputs.format }}
+          # Adjust severity of non-security issues
+        gh-code-scanning-compat: true
+          # Force 0 exit code to allow SARIF file generation
+          # This will hand over control about PR rejection to the GitHub side
+        max-allowed-issues: 2147483647
+      
+      # Upload the SARIF file generated in the previous step
+    -  name: Upload SARIF results file
+       uses: github/codeql-action/upload-sarif@main
+       with:
+        sarif_file: ${{ inputs.output }} 
+        
+          
