@@ -10,14 +10,17 @@ on:
         type: string
       format:  
         required: true
-        type: string      
+        type: string 
+      code-quality:  
+        required: true
+        type: string   
     secrets:
       ADOVARIABLE:
         required: true
 jobs:
   code-quality-check:
-    runs-on: ubuntu-latest
-    
+    if: ${{ inputs.ccode-quality  == 'yes' }}
+    runs-on: ubuntu-latest    
     steps:
     - name: checkout
       uses: actions/checkout@v3.5.0
