@@ -1,0 +1,29 @@
+name: Reusable_workflow
+on:
+  workflow_call:
+    secrets:
+      CLIENT_ID:
+        required: true
+      CLIENT_SECRET:
+        required: true
+      SUBSCRIPTION_ID:
+        required: true
+      TENANT_ID:
+        required: true  
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+    - name: Download a single artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: drop-${{ github.sha }}
+    - name: 'Azure App Service Deploy: poc-adotogithub-java'
+      uses: azure/login@v1.4.6
+      with:
+        creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+    - name: 'Azure App Service Deploy: poc-adotogithub-java'
+      uses: azure/webapps-deploy@v2.2.10
+      with:
+        app-name: poc-adotogithub-java
+        package: "${{ github.workspace }}/target/musicalbum-0.0.1-SNAPSHOT.jar"     
