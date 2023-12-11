@@ -1,0 +1,12 @@
+name: Artifact-Reusable-workflow
+on:
+  workflow_call:
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+    - name: Download a single artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: drop-${{ github.sha }}
+       
