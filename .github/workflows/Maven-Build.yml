@@ -51,4 +51,8 @@ jobs:
             const dest = path.join(target, filename)
             await io.mkdirP(path.dirname(dest))
             await io.cp(file, dest, options)
-          }    
+          } 
+    - uses: actions/upload-artifact@v3.1.1
+      with:
+        name: drop-${{ github.sha }}
+        path: "${{ runner.temp }}"
