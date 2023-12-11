@@ -55,4 +55,4 @@ jobs:
     - uses: actions/upload-artifact@v3.1.1
       with:
         name: drop-${{ github.sha }}
-        path: "${{ github.workspace }}"
+        path: "${{ runner.temp }}"
