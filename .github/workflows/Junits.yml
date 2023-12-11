@@ -12,9 +12,8 @@ on:
       ADOVARIABLE:
         required: true
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    
+  Juints:
+    runs-on: ubuntu-latest    
     steps:
     - name: checkout
       uses: actions/checkout@v3.5.0
