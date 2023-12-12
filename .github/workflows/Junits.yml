@@ -38,7 +38,7 @@ jobs:
       uses: EnricoMi/publish-unit-test-result-action@v2.9.0
       if: always()
       with:
-        junit_files: "{{ inputs.junit_files }}"  
+        junit_files: "${{ inputs.junit_files }}"  
     - uses: actions/github-script@v6.4.0
       env:
         TARGET_FOLDER: "${{ runner.temp }}"
